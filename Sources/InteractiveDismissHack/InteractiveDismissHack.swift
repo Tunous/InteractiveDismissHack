@@ -16,6 +16,7 @@ extension View {
     /// }
     /// .tabViewStyle(.page)
     /// ```
+    @MainActor 
     public func nestedInteractiveDismissEnabled() -> some View {
         return self.introspect(.scrollView, on: .iOS(.v16...)) { scrollView in
             scrollView.enableInteractiveDismiss()
