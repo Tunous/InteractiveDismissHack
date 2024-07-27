@@ -29,6 +29,8 @@ extension View {
     }
 }
 
+// MARK: - Internal
+
 #if os(iOS)
 extension UIScrollView {
     fileprivate static let swizzleInteractiveDismiss: Void = {
