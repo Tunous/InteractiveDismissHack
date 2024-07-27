@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "InteractiveDismissHack",
-    platforms: [.iOS(.v16)],
+    platforms: [.iOS(.v13), .macOS(.v10_15)],
     products: [
         .library(
             name: "InteractiveDismissHack",
@@ -18,12 +18,6 @@ let package = Package(
             name: "InteractiveDismissHack",
             dependencies: [
                 .product(name: "SwiftUIIntrospect", package: "swiftui-introspect"),
-            ]
-        ),
-        .testTarget(
-            name: "InteractiveDismissHackTests",
-            dependencies: [
-                "InteractiveDismissHack",
             ]
         ),
     ]

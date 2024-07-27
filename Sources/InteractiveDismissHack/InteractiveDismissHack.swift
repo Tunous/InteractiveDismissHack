@@ -16,14 +16,20 @@ extension View {
     /// }
     /// .tabViewStyle(.page)
     /// ```
-    @MainActor 
+    @MainActor
+    @available(macOS, unavailable)
     public func nestedInteractiveDismissEnabled() -> some View {
+        #if os(iOS)
         return self.introspect(.scrollView, on: .iOS(.v16...)) { scrollView in
             scrollView.enableInteractiveDismiss()
         }
+        #else
+        return self
+        #endif
     }
 }
 
+#if os(iOS)
 extension UIScrollView {
     fileprivate static let swizzleInteractiveDismiss: Void = {
         guard
@@ -50,3 +56,4 @@ extension UIScrollView {
         return swizzledParentScrollView()
     }
 }
+#endif
