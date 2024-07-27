@@ -5,14 +5,49 @@
 In the following example this function will make it possible to dismiss modal sheet by swiping down on `ScrollView` that is placed inside of `TabView` with page style.
 
 ```swift
-TabView {
-    ScrollView {
+import SwiftUI
+import InteractiveDismissHack
+
+struct ContentView: View {
+    var body: some View {
+        TabView {
+            ScrollView {
+                // ...
+            }
+            .nestedInteractiveDismissEnabled()
+        }
+        .tabViewStyle(.page)
+    }
+}
+```
+
+Additionally you can access interactive dismiss gesture recognizer via environment.
+
+```swift
+import SwiftUI
+import InteractiveDismissHack
+
+struct ParentView: View {
+    var body: some View {
+        ZStack {
+            // ...
+        }
+        .sheet(isPresented: ...) {
+            ChildView()
+                .extractInteractiveDismissGesture() // Make gesture available
+        }
+    }
+}
+
+struct ChildView: View {
+    // Access gesture
+    @Environment(\.interactiveDismissGesture) private var interactiveDismissGesture
+    
+    var body: some View {
         // ...
     }
-    .nestedInteractiveDismissEnabled()
 }
-.tabViewStyle(.page)
-```
+```  
 
 > [!IMPORTANT]
 > This library modifies internal behavior of UIScrollView and might break with newer version of iOS. Use at your own risk.
