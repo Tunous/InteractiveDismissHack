@@ -57,7 +57,7 @@ struct ChildView: View {
 ```swift
 let package = Package(
     dependencies: [
-        .package(url: "https://github.com/Tunous/InteractiveDismissHack", from: "0.1.0"),
+        .package(url: "https://github.com/Tunous/InteractiveDismissHack", .upToNextMajor(from: "1.0.0")),
     ],
     targets: [
         .target(name: <#Target Name#>, dependencies: [
